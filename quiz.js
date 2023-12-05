@@ -1,6 +1,6 @@
 var answersKey = [{
-    question1: "In what country did the first Starbucks open outside of North America?",
-    answer: [
+    question: "In what country did the first Starbucks open outside of North America?",
+    answers: [
         {"A. The U.K." : false},
         {"B. China" : false},
         {"C. Japan" : true},
@@ -8,8 +8,8 @@ var answersKey = [{
     ]
 },
 {
-    question2: "Who was the highest-paid athlete in 2022?",
-    answer: [
+    question: "Who was the highest-paid athlete in 2022?",
+    answers: [
         {"A. Lebron James" : false},
         {"B. Lionel Messi" : true},
         {"C. Cristiano Ronaldo" : false},
@@ -17,8 +17,8 @@ var answersKey = [{
     ]
 },
 {
-    question3: "What is Starbucks' logo?",
-    answer: [
+    question: "What is Starbucks' logo?",
+    answers: [
         {"A. Siren" : true},
         {"B. Mermaid" : false},
         {"C. Fish" : false},
@@ -26,8 +26,8 @@ var answersKey = [{
     ]
 },
 {
-    question4: "Who was the highest-paid athlete in 2022?",
-    answer: [
+    question: "Who was the highest-paid athlete in 2022?",
+    answers: [
         {"A. Lebron James" : false},
         {"B. Lionel Messi" : true},
         {"C. Cristiano Ronaldo" : false},
@@ -35,8 +35,8 @@ var answersKey = [{
     ]
 },
 {
-    question5: "What is the chemical symbol for gold?",
-    answer: [
+    question: "What is the chemical symbol for gold?",
+    answers: [
         {"A. Gd" : false},
         {"B. Au" : true},
         {"C. Pb" : false},
@@ -44,8 +44,8 @@ var answersKey = [{
     ]
 },
 {
-    question6: "What geometric shape is generally used for stop signs?",
-    answer: [
+    question: "What geometric shape is generally used for stop signs?",
+    answers: [
         {"A. Octangon" : true},
         {"B. Circle" : false},
         {"C. Square" : false},
@@ -53,8 +53,8 @@ var answersKey = [{
     ]
 },
 {
-    question7: "How long was the first Thanksgiving?",
-    answer: [
+    question: "How long was the first Thanksgiving?",
+    answers: [
         {"A. 4 days" : false},
         {"B. 2 days" : false},
         {"C. 1 day" : false},
@@ -62,8 +62,8 @@ var answersKey = [{
     ]
 },
 {
-    question8: "Which blood type is a universal donor?",
-    answer: [
+    question: "Which blood type is a universal donor?",
+    answers: [
         {"A. O-" : true},
         {"B. O+" : false},
         {"C. AB+" : false},
@@ -71,8 +71,8 @@ var answersKey = [{
     ]
 },
 {
-    question9: "How many meters are in a kilometer?",
-    answer: [
+    question: "How many meters are in a kilometer?",
+    answers: [
         {"A. 100" : false},
         {"B. 10000" : false},
         {"C. 1000" : true},
@@ -80,8 +80,8 @@ var answersKey = [{
     ]
 },
 {
-    question10: "Which was the first country to use paper money?",
-    answer: [
+    question: "Which was the first country to use paper money?",
+    answers: [
         {"A. Japan" : false},
         {"B. Egypt" : false},
         {"C. The U.S." : false},
@@ -89,3 +89,15 @@ var answersKey = [{
     ]
 },
 ] 
+
+const triviaQuestion = document.getElementById("triviaQuestion");
+let currentQuestion = 0;
+function loadQuestion(){
+    let questionInfo = answersKey[currentQuestion];
+    let options = document.querySelectorAll("button");
+    triviaQuestion.innerText = questionInfo.question;
+    for(let i = 0; i < questionInfo.answers.length; i++){
+        options[i].innerText = Object.keys(questionInfo.answers[i])[0];
+    }
+}
+loadQuestion();
