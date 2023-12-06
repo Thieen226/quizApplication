@@ -102,13 +102,22 @@ function loadQuestion(){
     for(let i = 0; i < questionInfo.answers.length; i++){
         //change the answer options to the answers in the answersKey array
         options[i].innerText = Object.keys(questionInfo.answers[i])[0];
-        options[i].addEventListener("click", checkAnswers);
-    }
-}
-
-
-function checkAnswers(){
-    for(let i = 0; i < questionInfo.answers.length; i++){
+        //
+        options[i].onclick = function(){
+            if(Object.values(questionInfo.answers[i])[0] === true){
+                options[i].style.backgroundColor = "#32cd32";
+                let nextBtn = document.createElement("Button");
+                nextBtn.innerText = "Next";
+                document.body.appendChild(nextBtn);
+                nextBtn.classList.add('nextBtn');
+            }
+            else{
+                options[i].style.backgroundColor = "#f44336";
+            }
+            nextBtn.onclick = function(){
+                currentQuestion++;
+            }
+        }
 
     }
 }
