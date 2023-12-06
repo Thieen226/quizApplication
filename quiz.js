@@ -92,12 +92,24 @@ var answersKey = [{
 
 const triviaQuestion = document.getElementById("triviaQuestion");
 let currentQuestion = 0;
+//access to the question and its answers in the answersKey array 
+let questionInfo = answersKey[currentQuestion];
 function loadQuestion(){
-    let questionInfo = answersKey[currentQuestion];
     let options = document.querySelectorAll("button");
+    //change the text of the question to the question inside the object
     triviaQuestion.innerText = questionInfo.question;
+    //go through answers in the question 
     for(let i = 0; i < questionInfo.answers.length; i++){
+        //change the answer options to the answers in the answersKey array
         options[i].innerText = Object.keys(questionInfo.answers[i])[0];
+        options[i].addEventListener("click", checkAnswers);
+    }
+}
+
+
+function checkAnswers(){
+    for(let i = 0; i < questionInfo.answers.length; i++){
+
     }
 }
 loadQuestion();
