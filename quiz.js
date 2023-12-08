@@ -94,7 +94,7 @@ const triviaQuestion = document.getElementById("triviaQuestion");
 let currentQuestion = 0;
 //access to the question and its answers in the answersKey array 
 let questionInfo = answersKey[currentQuestion];
-function loadQuestion(){
+function loadQuestion(currentQuestion){
     let options = document.querySelectorAll("button");
     //change the text of the question to the question inside the object
     triviaQuestion.innerText = questionInfo.question;
@@ -110,15 +110,19 @@ function loadQuestion(){
                 nextBtn.innerText = "Next";
                 document.body.appendChild(nextBtn);
                 nextBtn.classList.add('nextBtn');
+
+                nextBtn.onclick = function(){
+                    currentQuestion++;
+                    loadQuestion();
+                }
             }
             else{
                 options[i].style.backgroundColor = "#f44336";
             }
-            nextBtn.onclick = function(){
-                currentQuestion++;
-            }
+
         }
 
     }
 }
 loadQuestion();
+
