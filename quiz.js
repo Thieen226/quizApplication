@@ -93,8 +93,8 @@ var answersKey = [{
 const triviaQuestion = document.getElementById("triviaQuestion");
 let currentQuestion = 0;
 let score = 0;
-let wrongAnswer = true; 
-let correctAnswer = true; 
+let wrongAnswerIsClicked = false; 
+let correctAnswerIsClicked = false; 
 function loadQuestion(currentQuestion){
     //access to the question and its answers in the answersKey array 
     let questionInfo = answersKey[currentQuestion];
@@ -113,25 +113,33 @@ function loadQuestion(currentQuestion){
         options[i].onclick = function(){
 
             //check if the value of answer option is true or not
-            if(Object.values(questionInfo.answers[i])[0] === true){
-                wrongAnswer = true;
-                correctAnswer = true;
+            if(Object.values(questionInfo.answers[i])[0] === false){
+                wrongAnswerIsClicked = true;
+
+                //change the background of the incorrect answer to red
+                options[i].style.backgroundColor = "#f44336";
+            }
+            else if(Object.values(questionInfo.answers[i])[0] === true){
+                correctAnswerIsClicked = true;
 
                 //change the background of the correct answer to green
                 options[i].style.backgroundColor = "#32cd32";
+
+                if(correctAnswerIsClicked === true && wrongAnswerIsClicked === false){
+                    let points = document.getElementById("points");
+                    score += 10;
+                    points.innerText = "Points: " + score;
+                }
+                if(correctAnswerIsClicked === true && wrongAnswerIsClicked === true){
+                    score += 0;
+                    points.innerText = "Points: " + score;
+                }
 
                 //if true, create a nextBtn to move to next question
                 let nextBtn = document.createElement("Button");
                 nextBtn.innerText = "Next";
                 document.body.appendChild(nextBtn);
                 nextBtn.classList.add('nextBtn');
-
-                if(correctAnswer === true && wrongAnswer === false){
-                    let points = document.getElementById("points");
-                    score += 10;
-                    points.innerText = "Points: " + score;
-                }
-
 
                 //this function will move to next question when nextBtn is clicked
                 nextBtn.onclick = function(){
@@ -144,16 +152,13 @@ function loadQuestion(currentQuestion){
                     })
                 }
             }
-            else{
-                wrongAnswer = true;
-                correctAnswer = false;
-                //change the background of the incorrect answer to red
-                options[i].style.backgroundColor = "#f44336";
-            }
-
         }
+                
+
+
 
     }
+
 }
 loadQuestion(currentQuestion);
 
