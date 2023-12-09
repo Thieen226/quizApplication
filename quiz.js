@@ -95,6 +95,7 @@ let currentQuestion = 0;
 let score = 0; //this keeps track of correct score
 let wrongAnswerIsClicked = false; //false if the user is not clicking the wrong answer
 let correctAnswerIsClicked = false; //false if the user is not clicking the right answer
+let scoreAdded = false; //false if the score is not added
 function loadQuestion(currentQuestion){
     //access to the question and its answers in the answersKey array 
     let questionInfo = answersKey[currentQuestion];
