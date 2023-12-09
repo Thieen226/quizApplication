@@ -92,9 +92,9 @@ var answersKey = [{
 
 const triviaQuestion = document.getElementById("triviaQuestion");
 let currentQuestion = 0;
-let score = 0;
-let wrongAnswerIsClicked = false; 
-let correctAnswerIsClicked = false; 
+let score = 0; //this keeps track of correct score
+let wrongAnswerIsClicked = false; //false if the user is not clicking the wrong answer
+let correctAnswerIsClicked = false; //false if the user is not clicking the right answer
 function loadQuestion(currentQuestion){
     //access to the question and its answers in the answersKey array 
     let questionInfo = answersKey[currentQuestion];
@@ -112,30 +112,35 @@ function loadQuestion(currentQuestion){
         //when the user click the answer options, does this
         options[i].onclick = function(){
 
-            //check if the value of answer option is true or not
+            //check if the user click the wrong answer
             if(Object.values(questionInfo.answers[i])[0] === false){
-                wrongAnswerIsClicked = true;
+                //then change the value of wrongAnswerIsClicked to true since the user clicks the wrong answer
+                wrongAnswerIsClicked = true; 
 
                 //change the background of the incorrect answer to red
                 options[i].style.backgroundColor = "#f44336";
             }
+            //check if the user click the right answer
             else if(Object.values(questionInfo.answers[i])[0] === true){
+                //change the value of correctAnswerIsClicked to true since the user clicks the right answer
                 correctAnswerIsClicked = true;
 
                 //change the background of the correct answer to green
                 options[i].style.backgroundColor = "#32cd32";
 
+                //if the user clicks the right answer before clicking the wrong one then add 10 points
                 if(correctAnswerIsClicked === true && wrongAnswerIsClicked === false){
                     let points = document.getElementById("points");
                     score += 10;
                     points.innerText = "Points: " + score;
                 }
+                //if the user clicks the wrong answer before the right one then add nothing
                 if(correctAnswerIsClicked === true && wrongAnswerIsClicked === true){
                     score += 0;
                     points.innerText = "Points: " + score;
                 }
 
-                //if true, create a nextBtn to move to next question
+                //if the answer is correct, create a nextBtn to move to next question
                 let nextBtn = document.createElement("Button");
                 nextBtn.innerText = "Next";
                 document.body.appendChild(nextBtn);
@@ -143,6 +148,11 @@ function loadQuestion(currentQuestion){
 
                 //this function will move to next question when nextBtn is clicked
                 nextBtn.onclick = function(){
+                    //when the nextBtn is clicked, reset the value of both correctAnswerIsClicked and wrongAnswerIsClicked
+                    correctAnswerIsClicked = false;
+                    wrongAnswerIsClicked = false;
+
+                    //add 1 to the currentQuestion to move to the next question
                     loadQuestion(++currentQuestion);
                     document.body.removeChild(nextBtn);
 
@@ -154,11 +164,7 @@ function loadQuestion(currentQuestion){
             }
         }
                 
-
-
-
     }
-
 }
 loadQuestion(currentQuestion);
 
