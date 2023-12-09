@@ -139,7 +139,6 @@ function loadQuestion(currentQuestion){
                     score += 0;
                     points.innerText = "Points: " + score;
                 }
-
                 //if the answer is correct, create a nextBtn to move to next question
                 let nextBtn = document.createElement("Button");
                 nextBtn.innerText = "Next";
@@ -162,8 +161,7 @@ function loadQuestion(currentQuestion){
                     })
                 }
             }
-        }
-                
+        } 
     }
 }
 loadQuestion(currentQuestion);
