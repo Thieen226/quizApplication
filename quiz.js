@@ -118,7 +118,7 @@ function loadQuestion(currentQuestion){
                 wrongAnswerIsClicked = true; 
 
                 //change the background of the incorrect answer to red
-                options[i].style.backgroundColor = "#f44336";
+                options[i].style.backgroundColor = "#fb6c6c";
             }
             //check if the user click the right answer
             else if(Object.values(questionInfo.answers[i])[0] === true){
@@ -126,7 +126,7 @@ function loadQuestion(currentQuestion){
                 correctAnswerIsClicked = true;
 
                 //change the background of the correct answer to green
-                options[i].style.backgroundColor = "#32cd32";
+                options[i].style.backgroundColor = "#50f698";
 
                 //if the user clicks the right answer before clicking the wrong one then add 10 points
                 if(correctAnswerIsClicked === true && wrongAnswerIsClicked === false){
