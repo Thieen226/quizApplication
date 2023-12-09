@@ -139,26 +139,28 @@ function loadQuestion(currentQuestion){
                     score += 0;
                     points.innerText = "Points: " + score;
                 }
-                //if the answer is correct, create a nextBtn to move to next question
-                let nextBtn = document.createElement("Button");
-                nextBtn.innerText = "Next";
-                document.body.appendChild(nextBtn);
-                nextBtn.classList.add('nextBtn');
+                //check if any next button is created on the website, if not add it
+                if(!document.querySelector(".nextBtn")){
+                    let nextBtn = document.createElement("Button");
+                    nextBtn.innerText = "Next";
+                    document.body.appendChild(nextBtn);
+                    nextBtn.classList.add('nextBtn');
 
-                //this function will move to next question when nextBtn is clicked
-                nextBtn.onclick = function(){
-                    //when the nextBtn is clicked, reset the value of both correctAnswerIsClicked and wrongAnswerIsClicked
-                    correctAnswerIsClicked = false;
-                    wrongAnswerIsClicked = false;
+                        //this function will move to next question when nextBtn is clicked
+                        nextBtn.onclick = function(){
+                        //when the nextBtn is clicked, reset the value of both correctAnswerIsClicked and wrongAnswerIsClicked
+                        correctAnswerIsClicked = false;
+                        wrongAnswerIsClicked = false;
 
-                    //add 1 to the currentQuestion to move to the next question
-                    loadQuestion(++currentQuestion);
-                    document.body.removeChild(nextBtn);
+                        //add 1 to the currentQuestion to move to the next question
+                        loadQuestion(++currentQuestion);
+                        document.body.removeChild(nextBtn);
 
-                    //when move to the next question, all the answer options will change to its original color
-                    options.forEach((element) => {
+                        //when move to the next question, all the answer options will change to its original color
+                        options.forEach((element) => {
                         element.style.backgroundColor = "#F5F1CB";
-                    })
+                        })
+                    }
                 }
             }
         } 
