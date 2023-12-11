@@ -164,7 +164,7 @@ function loadQuestion(currentQuestion){
                         wrongAnswerIsClicked = false;
                         totalQuestion++; //add 1 when move to next question to keep track the question user do
 
-                        //add 1 to the currentQuestion to move to the next question
+                        //add 1 to the currentQuestion to move to the next question before the last one
                         if(currentQuestion < answersKey.length -1){
                             loadQuestion(++currentQuestion);
                             document.body.removeChild(nextBtn);
@@ -178,10 +178,10 @@ function loadQuestion(currentQuestion){
                             triviaQuestion.appendChild(scoreText);
                             scoreText.innerText = "You Got: " + totalCorrectAnswer + "/10";
 
-                            let quizPoint = document.createElement("p");
-                            document.body.appendChild(quizPoint);
-                            triviaQuestion.appendChild(quizPoint);
-                            quizPoint.innerText = "You Score " + score + " points";
+                            let quizScore = document.createElement("p");
+                            document.body.appendChild(quizScore);
+                            triviaQuestion.appendChild(quizScore);
+                            quizScore.innerText = "You Score " + score + " points";
                            
                             
 
