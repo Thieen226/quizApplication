@@ -106,6 +106,9 @@ function loadQuestion(currentQuestion){
     //change the text of the question to the question inside the object
     triviaQuestion.innerText = questionInfo.question;
 
+    //to check if score is already added when the user click the right answer
+    let scoreAdded = false; 
+
     //go through answers in the question 
     for(let i = 0; i < questionInfo.answers.length; i++){
 
@@ -123,10 +126,13 @@ function loadQuestion(currentQuestion){
                 //change the background of the incorrect answer to red
                 options[i].style.backgroundColor = "#fb6c6c";
             }
-            //check if the user click the right answer
-            else if(Object.values(questionInfo.answers[i])[0] === true){
+            //check if the user click the right answer 
+            else if(Object.values(questionInfo.answers[i])[0] === true && scoreAdded === false){
                 //change the value of correctAnswerIsClicked to true since the user clicks the right answer
                 correctAnswerIsClicked = true;
+
+                //change scoreAdded to true so if the user click the right answer multiple times it will not add more score
+                scoreAdded = true;
 
                 //change the background of the correct answer to green
                 options[i].style.backgroundColor = "#50f698";
